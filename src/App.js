@@ -1,14 +1,22 @@
 import React from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
+import Header from './components/Header';
 function App() {
   return (
     <div className="App">
-      <h1>Tinder Clone </h1>
       {/* header */}
-      {/* Tinder cards */}
-      {/* buttons below tinder card */}
-      {/* Char screen */}
-      {/* individual  chat screen */}
+      <Header />
+      <Router>
+        <Switch>
+          <Route path='/chat'>
+            <h1>Chat</h1>
+          </Route>
+          <Route path='/'>
+            <h1>Home</h1>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
