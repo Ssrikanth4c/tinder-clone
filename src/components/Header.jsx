@@ -10,7 +10,9 @@ function Header(){
             <IconButton>
                 <PersonIcon className='header-icon' color='action' fontSize='large'/>
             </IconButton>
-            <img src={tinder_logo} alt='tinder-logo' height={40}/>
+            <IconButton>
+                <img src={tinder_logo} alt='tinder-logo' height={40}/>
+            </IconButton>
             <IconButton>
                 <ForumIcon className='header-icon' color='action' fontSize='large'/>
             </IconButton>
