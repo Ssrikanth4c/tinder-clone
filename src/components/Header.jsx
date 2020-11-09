@@ -4,18 +4,37 @@ import tinder_logo from '../assets/images/tinder-logo.svg';
 import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
 import ForumIcon from '@material-ui/icons/Forum';
-function Header(){
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'; 
+
+import {Link, useHistory} from 'react-router-dom';
+function Header(props){
+    const {backButton}=props;
+    const history = useHistory();
+    console.log(history)
     return(
         <div className='header'>
-            <IconButton>
-                <PersonIcon className='header-icon' color='action' fontSize='large'/>
-            </IconButton>
-            <IconButton>
-                <img src={tinder_logo} alt='tinder-logo' height={40}/>
-            </IconButton>
-            <IconButton>
-                <ForumIcon className='header-icon' color='action' fontSize='large'/>
-            </IconButton>
+            {
+                backButton?(
+                <IconButton  onClick={()=>history.replace(backButton)}>
+                    <ArrowBackIosIcon  fontSize='large' classname='header-icon'/>
+                </IconButton>)
+                :
+                (
+                    <IconButton>
+                        <PersonIcon className='header-icon' color='action' fontSize='large'/>
+                    </IconButton>
+                )
+            }
+            <Link to='/'>
+                <IconButton>
+                    <img src={tinder_logo} alt='tinder-logo' height={40}/>
+                </IconButton>
+            </Link>
+            <Link to='/chat'>
+                <IconButton>
+                    <ForumIcon className='header-icon' color='action' fontSize='large'/>
+                </IconButton>
+            </Link>
         </div>
     );
 }

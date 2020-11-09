@@ -7,7 +7,6 @@ import ReplayIcon from '@material-ui/icons/Replay';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ClearIcon from '@material-ui/icons/Clear';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
-import { orange } from '@material-ui/core/colors';
 
 function SwipeButtons(){
     return(
