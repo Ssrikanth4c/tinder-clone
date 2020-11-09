@@ -1,0 +1,16 @@
+.chat{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.chat-message + p{
+    color: lightgray;
+}
+.chat-message{
+    flex: 1;
+    margin-left: 20px;
+}
+.chat-message > p{
+    color: gray;
+}

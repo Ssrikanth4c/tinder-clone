@@ -30,7 +30,7 @@ function Header(props){
                     <img src={tinder_logo} alt='tinder-logo' height={40}/>
                 </IconButton>
             </Link>
-            <Link to='/chat'>
+            <Link to='/chats'>
                 <IconButton>
                     <ForumIcon className='header-icon' color='action' fontSize='large'/>
                 </IconButton>
