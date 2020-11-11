@@ -1,32 +1,59 @@
-import React from 'react';
-import Chat from './Chat';
-const ChatScreen=()=>{
-    const chatList=[
+import React, {useEffect, useState} from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import './chat.css';
+const ChatScreen = () => {
+    const [input, SetInput]=useState('');
+    const [message, SetMessage] = useState([
         {
-            name:'Stella',
-            profilePic:'https://images.unsplash.com/photo-1563859852284-29b77ae01a7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
-            timeStamp:'40 Seconds ago',
-            message:'H! there!'
-        },
-        {
-            name:'Latitha',
-            profilePic:'https://images.unsplash.com/photo-1584531910632-0c55032af6d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
-            timeStamp:'1hr  ago',
-            message:'H! there Whats up!'
-        },
-    ]
-    return(
+            name: 'rajini',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSThz0gYaE6aUXVv7mN5ewy' +
+                    'LrD4cpJwqPzEvg&usqp=CAU',
+            message: 'Hi there !'
+        }, {
+            name: 'rajini',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSThz0gYaE6aUXVv7mN5ewy' +
+                    'LrD4cpJwqPzEvg&usqp=CAU',
+            message: 'How are you '
+        }, {
+            message: 'Hi, How are you '
+        }
+    ])
+    const handleSubmit=e=>{
+        e.preventDefault();
+        SetMessage([ ...message ,{message: input}])
+        SetInput('')
+
+    }
+    return (
         <div>
             {
-                chatList.map(chat=>{
-                    return(
-                        <div key={chat.name}>
-                            <Chat  chat={chat}/>
-                        </div>
-                    );
-                })
+                message
+                    ?.map(msg => (
+                        msg.name
+                            ? (
+                                <div className='chatScreen' key={msg.name}>
+                                    <Avatar src={msg.url} alt={msg.name} className='chatScreen__avatar'/>
+                                    <p className='chatScreen__message'>{msg.message}</p>
+                                </div>
+                            )
+                            : (
+                                <div className='chatScreen'>
+                                    <p className='chatScreen__messageUser'>{msg.message}</p>
+                                </div>
+                            )
+                    ))
             }
+            <form className="chatScreen__input">
+                <input
+                    value={input}
+                    onChange={(e)=>SetInput(e.target.value)}
+                    type="text"
+                    placeholder='Type a message ...'
+                    className='chartScreen__inputField'/>
+                <button onClick={handleSubmit} type='submit' className='chatScreen__inputButton'>SEND</button>
+            </form>
         </div>
     );
 }
+
 export default ChatScreen;
