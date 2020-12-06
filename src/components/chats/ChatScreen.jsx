@@ -20,29 +20,33 @@ const ChatScreen = () => {
     ])
     const handleSubmit=e=>{
         e.preventDefault();
-        SetMessage([ ...message ,{message: input}])
+        if(input)
+            SetMessage([ ...message ,{message: input}])
         SetInput('')
 
     }
     return (
         <div>
-            {
-                message
-                    ?.map(msg => (
-                        msg.name
-                            ? (
-                                <div className='chatScreen' key={msg.name}>
-                                    <Avatar src={msg.url} alt={msg.name} className='chatScreen__avatar'/>
-                                    <p className='chatScreen__message'>{msg.message}</p>
-                                </div>
-                            )
-                            : (
-                                <div className='chatScreen'>
-                                    <p className='chatScreen__messageUser'>{msg.message}</p>
-                                </div>
-                            )
-                    ))
-            }
+            <div style={{height:'90vh', overflowY:'scroll'}}>
+                {
+                    message
+                        ?.map(msg => (
+                            msg.name
+                                ? (
+                                    <div className='chatScreen' key={msg.name}>
+                                        <Avatar src={msg.url} alt={msg.name} className='chatScreen__avatar'/>
+                                        <p className='chatScreen__message'>{msg.message}</p>
+                                    </div>
+                                )
+                                : (
+                                    <div className='chatScreen'>
+                                        <p className='chatScreen__messageUser'>{msg.message}</p>
+                                    </div>
+                                )
+                        ))
+                }
+            </div>
+           
             <form className="chatScreen__input">
                 <input
                     value={input}

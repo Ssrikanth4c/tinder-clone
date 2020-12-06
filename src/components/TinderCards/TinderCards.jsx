@@ -1,28 +1,50 @@
 // import React from 'React';
-import { useState } from 'react';
+
 import TinderCard from 'react-tinder-card';
 import './TinderCards.css';
-function TinderCards(){
-    const [people, setPeople]= useState([
-        {
-            name:'srikanth',
-            url:'https://images.pexels.com/photos/3854982/pexels-photo-3854982.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-        },
-        {
-            name:'pavan',
-            url:'https://images.pexels.com/photos/3422525/pexels-photo-3422525.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-        }
-    ]);
-    return(
+
+function TinderCards(props) {
+    const {people} = props;
+    return (
         <div>
             <div className="tinderCard-Container">
-                {people.map(person=>(
-                    <TinderCard key={person.name} className='swipe'>
-                        <div className='card' style={{backgroundImage:`url(${person.url})`}}>
-                            <h3>{person.name}</h3>
-                        </div>
-                    </TinderCard>
-                ))}               
+                {
+                    people.map((person, ind) => (
+                        <TinderCard
+                            key={person.name}
+                            className='swipe'
+                            ref={props.childRefs[ind]}
+                            onCardLeftScreen={() => props.cardsLeft(person.name)}>
+                            <div
+                                className='card'
+                                style={{
+                                    backgroundImage: `url(${person.url})`
+                                }}>
+                                <div>
+                                    <div className='tinderCard__names'>
+                                        <h3>{person.name}</h3>
+                                        <h4
+                                            style={{
+                                                fontSize: '20px',
+                                                margin: 0,
+                                                marginTop: 18,
+                                                fontWeight: 400
+                                            }}>{person.age}</h4>
+                                    </div>
+                                    <div className='tinderCard__interests'>
+                                        {
+
+                                            person
+                                                .interests
+                                                .map((interest, ind) => (<p key={ind}>{interest}</p>))
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </TinderCard>
+                    ))
+                }
             </div>
         </div>
     );
